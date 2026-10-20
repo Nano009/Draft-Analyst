@@ -1560,7 +1560,14 @@ $("resetBtn").addEventListener("click", () => {
     ROLES.forEach(r => updateSlot(side, r.key));
     updateTeamSummary(side);updateTeamProgress(side);
   }
+document.querySelectorAll(".champion-search").forEach(search => {
+  search.value = "";
+  search.setAttribute("aria-expanded", "false");
+});
 
+document.querySelectorAll(".champion-search-results").forEach(list => {
+  list.style.display = "none";
+});
   refreshChampionAvailability();
 
   $("report").className = "report-empty";
