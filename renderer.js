@@ -1551,7 +1551,11 @@ $("resetBtn").addEventListener("click", () => {
 
     document
       .querySelectorAll(`select[data-side="${side}"]`)
-      .forEach(s => s.value = "");
+      .forEach(s => {
+        s.value = "";
+        const search = s.closest(".slot")?.querySelector(".champion-search");
+        if (search) search.value = "";
+      });
 
     ROLES.forEach(r => updateSlot(side, r.key));
     updateTeamSummary(side);updateTeamProgress(side);
