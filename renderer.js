@@ -1570,6 +1570,18 @@ document.querySelectorAll(".champion-search-results").forEach(list => {
 });
   refreshChampionAvailability();
 
+  // Clear visible champion search fields after all reset updates.
+  document.querySelectorAll(".champion-search").forEach(search => {
+    search.value = "";
+    search.defaultValue = "";
+    search.setAttribute("aria-expanded", "false");
+  });
+
+  document.querySelectorAll(".champion-search-results").forEach(list => {
+    list.style.display = "none";
+    list.replaceChildren();
+  });
+
   $("report").className = "report-empty";
   $("report").innerHTML =
     'Select champions for both teams, then choose <strong>Analyse draft</strong>.';
