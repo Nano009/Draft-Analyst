@@ -1490,23 +1490,21 @@ function renderReport() {
 
 async function loadProfessionalStats() {
   try {
-    if (!window.leagueLive ||
-        typeof window.leagueLive.getProStats !== "function") {
-      throw new Error("Statistics bridge unavailable. Close and reopen Draft Analyst.");
+    if (window.leagueLive && typeof window.leagueLive.getProStats === "function") {
+      professionalStats = await window.leagueLive.getProStats();
+      professionalStatsError = "";
+    } else {
+      professionalStats = null;
+      professionalStatsError = "Browser mode: professional statistics need to be loaded from a local JSON file."; 
     }
-
-    professionalStats = await window.leagueLive.getProStats();
-    professionalStatsError = "";
-
     if ($("report").className !== "report-empty") renderReport();
   } catch (error) {
-    professionalStatsError =
-      "Professional stats unavailable: " + (error.message || "unknown error");
+    professionalStats = null;
+    professionalStatsError = "Professional stats unavailable: " + (error.message || "unknown error");
     if ($("report").className !== "report-empty") renderReport();
     console.error("Could not load professional statistics:", error);
   }
 }
-
 async function loadChampions() {
   makeSlots();
 
@@ -1542,6 +1540,9 @@ async function loadChampions() {
 }
 
 $("analyseBtn").addEventListener("click", renderReport);
+
+
+
 loadProfessionalStats();
 
 $("resetBtn").addEventListener("click", () => {
@@ -1711,5 +1712,27 @@ function enableChampionSearch() {
     document.addEventListener("click", event => {
       if (!slot.contains(event.target)) closeList();
     });
+  });
+}
+
+// Browser-only professional stats file picker
+const statsPicker = document.getElementById("proStatsFile");
+if (statsPicker) {
+  statsPicker.addEventListener("change", async () => {
+    const file = statsPicker.files?.[0];
+    if (!file) return;
+    const status = document.getElementById("statsUploadStatus");
+    try {
+      const data = JSON.parse(await file.text());
+      if (!data || !data.patches || typeof data.patches !== "object") {
+        throw new Error("Invalid stats JSON format.");
+      }
+      professionalStats = data;
+      professionalStatsError = "";
+      if (status) status.textContent = "Statistics loaded: " + file.name;
+      if (document.getElementById("report").className !== "report-empty") renderReport();
+    } catch (e) {
+      if (status) status.textContent = "Could not load file: " + e.message;
+    }
   });
 }

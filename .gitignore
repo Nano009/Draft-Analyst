@@ -24,3 +24,5 @@ desktop.ini
 *.bak
 *.backup
 *.zip
+
+data/pro_stats.json
