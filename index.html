@@ -1,0 +1,104 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeagueLive — Draft Analyst</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">LEAGUELIVE / STRATEGY LAB</div>
+      <h1>Draft Analyst</h1>
+      <p class="subtitle">Build both drafts. Understand how each composition wants to win.</p>
+    </div>
+    <div class="header-actions">
+      <span id="loadStatus" class="status">Loading champions…</span>
+      <button id="analyseBtn" class="primary">Analyse draft</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="draft-grid">
+      <article class="team-panel blue-panel">
+        <div class="team-heading">
+          <span class="team-mark blue-mark"></span>
+          <div>
+            <h2>BLUE SIDE</h2>
+            <p>First team</p>
+          </div>
+        </div>
+        <div id="blueSlots" class="slots"></div>
+        <div id="blueSummary" class="team-summary">
+          Choose champions to build your composition.
+        </div>
+      </article>
+
+      <article class="team-panel red-panel">
+        <div class="team-heading">
+          <span class="team-mark red-mark"></span>
+          <div>
+            <h2>RED SIDE</h2>
+            <p>Second team</p>
+          </div>
+        </div>
+        <div id="redSlots" class="slots"></div>
+        <div id="redSummary" class="team-summary">
+          Choose champions to build your composition.
+        </div>
+      </article>
+    </section>
+
+    <section class="analysis-panel">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">DRAFT REPORT</div>
+          <h2>Strategic read</h2>
+        </div>
+        <button id="resetBtn" class="secondary">Reset draft</button>
+      </div>
+
+      <div id="report" class="report-empty">
+        Select champions for both teams, then choose
+        <strong>Analyse draft</strong>.
+      </div>
+
+      <p class="disclaimer">
+        Prototype: analysis uses champion tags and transparent strategic
+        heuristics. It is not a validated win-probability model and does not
+        include professional-match matchup statistics.
+      </p>
+    </section>
+
+    <footer>
+      Champion names and metadata load from Riot Data Dragon.
+      Internet access is required.
+    </footer>
+  </main>
+
+  <template id="slotTemplate">
+    <div class="slot">
+      <label></label>
+
+      <input
+        class="champion-search"
+        type="search"
+        placeholder="Type a champion name..."
+        autocomplete="off"
+      >
+
+      <div class="champion-picker">
+        <img class="portrait" alt="" hidden>
+        <select>
+          <option value="">Select champion…</option>
+        </select>
+        <div class="champion-tags"></div>
+      </div>
+    </div>
+  </template>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
