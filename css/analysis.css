@@ -1,0 +1,295 @@
+/* Elemental Soul usefulness rankings — heuristic comparison UI */
+.soul-ranking-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+.soul-ranking-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #34465f;
+  border-radius: 9px;
+  background: #0d1522;
+}
+.soul-ranking-best { border-left: 3px solid #80e5b8; }
+.soul-ranking-least { border-left: 3px solid #f1cc78; }
+.soul-ranking-label, .soul-ranking-score, .soul-ranking-note {
+  color: #aab8cd;
+  font-size: 10px;
+  line-height: 1.55;
+}
+.soul-ranking-callout strong {
+  color: #f4f7ff;
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.soul-ranking-neutral {
+  padding: 10px 12px;
+  margin: 12px 0 !important;
+  background: #0d1522;
+  border-left: 3px solid #7894b8;
+  border-radius: 0 8px 8px 0;
+}
+.soul-list-heading { margin-top: 16px !important; }
+.soul-entry {
+  padding: 11px 0;
+  border-top: 1px solid #2b3a52;
+}
+.soul-entry-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin-bottom: 6px;
+}
+.soul-entry-heading h4 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+}
+.soul-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 27px;
+  height: 27px;
+  border: 1px solid #3b506e;
+  border-radius: 7px;
+  color: #d8e5f8;
+  background: #18263a;
+  font-size: 11px;
+  font-weight: 700;
+}
+.soul-score {
+  flex: 0 0 auto;
+  color: #aab8cd;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.soul-ranking-note { margin-top: 10px !important; }
+@media (max-width: 520px) {
+  .soul-ranking-summary { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* Soul fit explanations and evidence confidence labels */
+.soul-callout-reason {
+  margin: 6px 0 0 !important;
+  color: #d0d9e9;
+  font-size: 11px !important;
+  line-height: 1.65 !important;
+  font-weight: 400;
+}
+.soul-confidence {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 2px 0 5px;
+  padding: 4px 7px;
+  border: 1px solid #34465f;
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.soul-confidence-high {
+  color: #a6edcb;
+  background: #163328;
+  border-color: #2e684e;
+}
+.soul-confidence-moderate {
+  color: #f2d995;
+  background: #332b19;
+  border-color: #6b572b;
+}
+.soul-confidence-low {
+  color: #c2ccdb;
+  background: #1a2637;
+  border-color: #3b4b62;
+}
+.soul-entry-reason,
+.soul-entry-evidence {
+  font-size: 11px !important;
+  line-height: 1.7 !important;
+  margin-top: 5px !important;
+}
+.soul-entry-reason strong,
+.soul-entry-evidence strong {
+  color: #f4f7ff;
+}
+
+
+/* Reduce the dead space beside Rift Herald by giving the long Soul analysis
+   the full report width. Rift Herald and Baron then share the next grid row. */
+.objective-grid > .report-card:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .objective-grid > .report-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* Keep the Blue and Red Soul analysis visible side by side on desktop. */
+.soul-team-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+  margin: 14px 0 18px;
+}
+.soul-team-column {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #30415c;
+  border-radius: 11px;
+  background: #0d1522;
+  overflow-wrap: anywhere;
+}
+.soul-team-blue {
+  border-top: 3px solid #58b8ff;
+}
+.soul-team-red {
+  border-top: 3px solid #ff7188;
+}
+.soul-team-title {
+  margin: 0 0 12px !important;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #293a53;
+  font-size: 12px !important;
+  letter-spacing: .45px;
+}
+.soul-team-column .soul-side-read > p:first-child {
+  margin-top: 0;
+}
+.soul-team-column .soul-ranking-summary {
+  grid-template-columns: minmax(0, 1fr);
+}
+.soul-team-column .soul-ranking-callout {
+  padding: 9px 10px;
+}
+.soul-team-column .soul-entry {
+  padding: 10px 0;
+}
+.soul-team-column .soul-entry-heading {
+  flex-wrap: wrap;
+}
+.soul-team-column .soul-entry-heading h4 {
+  flex-basis: calc(100% - 45px);
+}
+.soul-team-column .soul-ranking-note {
+  font-size: 10px;
+}
+@media (max-width: 760px) {
+  .soul-team-comparison {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+/* COLLAPSIBLE REPORT CARDS — all report sections start collapsed */
+.report-disclosure {
+  margin-top: 2px;
+}
+
+.report-disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid #3b4b66;
+  border-radius: 8px;
+  background: #111b2b;
+  color: #dce8fa;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  list-style: none;
+  user-select: none;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.report-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.report-disclosure > summary:hover {
+  background: #1b2a40;
+  border-color: #627a9b;
+}
+
+.report-disclosure > summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.report-disclosure-less,
+.report-disclosure[open] .report-disclosure-more {
+  display: none;
+}
+
+.report-disclosure[open] .report-disclosure-less {
+  display: inline;
+}
+
+.report-disclosure-icon {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 150ms ease;
+}
+
+.report-disclosure[open] .report-disclosure-icon {
+  transform: rotate(225deg) translateY(-1px);
+}
+
+.report-disclosure-content {
+  min-width: 0;
+  padding-top: 13px;
+  animation: report-disclosure-in 160ms ease-out;
+}
+
+@keyframes report-disclosure-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .report-disclosure-content { animation: none; }
+  .report-disclosure-icon { transition: none; }
+}
+
+
+/* Consistent separation for the final report blocks */
+#report > .report-grid {
+  margin-bottom: 18px !important;
+}
+
+#report > .report-card {
+  margin-top: 18px !important;
+}
+
+#report > .objective-analysis {
+  display: flow-root;
+  margin-top: 18px !important;
+  padding-top: 1px;
+}
+
+#report > .objective-analysis > .section-heading {
+  margin-top: 17px;
+}

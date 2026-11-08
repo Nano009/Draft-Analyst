@@ -4,8 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LeagueLive — Draft Analyst</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>LeagueLive â€” Draft Analyst</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/analysis.css">
 </head>
 <body>
   <header class="topbar">
@@ -15,7 +17,7 @@
       <p class="subtitle">Build both drafts. Understand how each composition wants to win.</p>
     </div>
     <div class="header-actions">
-      <span id="loadStatus" class="status">Loading champions…</span>
+      <span id="loadStatus" class="status">Loading championsâ€¦</span>
       <button id="analyseBtn" class="primary">Analyse draft</button>
     </div>
   </header>
@@ -59,11 +61,12 @@
         </div>
         <button id="resetBtn" class="secondary">Reset draft</button>
       </div>
-<div class="stats-upload">
-  <label for="proStatsFile">Professional stats (optional)</label>
-  <input id="proStatsFile" type="file" accept=".json,application/json">
-  <p id="statsUploadStatus">Choose your local professional stats JSON file.</p>
-</div>
+
+      <div class="stats-upload">
+        <label for="proStatsFile">Professional stats (optional)</label>
+        <input id="proStatsFile" type="file" accept=".json,application/json">
+        <p id="statsUploadStatus">Loading professional statistics...</p>
+      </div>
       <div id="report" class="report-empty">
         Select champions for both teams, then choose
         <strong>Analyse draft</strong>.
@@ -96,13 +99,16 @@
       <div class="champion-picker">
         <img class="portrait" alt="" hidden>
         <select>
-          <option value="">Select champion…</option>
+          <option value="">Select championâ€¦</option>
         </select>
         <div class="champion-tags"></div>
       </div>
     </div>
   </template>
 
-  <script src="renderer.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/draft-analysis.js"></script>
+  <script src="js/professional-stats.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
